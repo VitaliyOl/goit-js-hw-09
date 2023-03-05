@@ -15,9 +15,8 @@ const DELAY = 1000;
 let intervalId = null;
 let chooseTime = null;
 let currentTime = null;
-let startBtn = refs.startBtn.disabled;
 
-startBtn = true;
+refs.startBtn.disabled = true;
 
 flatpickr(refs.calendarInput, {
   enableTime: true,
@@ -28,14 +27,14 @@ flatpickr(refs.calendarInput, {
     if (selectedDates[0].getTime() <= Date.now()) {
       Report.warning('Sorry', '"Please choose a date in the future"');
     } else {
-      startBtn = false;
+      refs.startBtn.disabled = false;
     }
 
-    refs.startBtn.addEventListener('click', onStart);
+    refs.startBtn.disabled.addEventListener('click', onStart);
 
     function onStart() {
       chooseTime = selectedDates[0].getTime();
-      startBtn = true;
+      refs.startBtn.disabled = true;
       timer.start();
     }
   },
@@ -62,7 +61,7 @@ const timer = {
 function stop() {
   clearInterval(intervalId);
   intervalId = null;
-  startBtn = true;
+  refs.startBtn.disabled = true;
 }
 
 function addLeadingZero(value) {
