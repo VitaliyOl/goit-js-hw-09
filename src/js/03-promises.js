@@ -33,18 +33,10 @@ function onSubmit(e) {
   let amountPosition = Number(amount.value);
   let delayStep = Number(step.value);
 
-  createPromise(amountPosition, firstDelay)
-    .then(({ position, delay }) => {
-      Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, options);
-    })
-    .catch(({ position, delay }) => {
-      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, options);
-    });
-
-  for (let amount = 1; amount < amountPosition; amount += 1) {
+  for (let amount = 1; amount <= amountPosition; amount += 1) {
     firstDelay += delayStep;
 
-    createPromise(amountPosition, firstDelay)
+    createPromise(amount, firstDelay)
       .then(({ position, delay }) => {
         Notify.success(
           `✅ Fulfilled promise ${position} in ${delay}ms`,

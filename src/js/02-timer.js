@@ -30,9 +30,9 @@ flatpickr(refs.calendarInput, {
       refs.startBtn.disabled = false;
     }
 
-    refs.startBtn.disabled.addEventListener('click', onStart);
+    refs.startBtn.addEventListener('click', onclick);
 
-    function onStart() {
+    function onclick() {
       chooseTime = selectedDates[0].getTime();
       refs.startBtn.disabled = true;
       timer.start();
